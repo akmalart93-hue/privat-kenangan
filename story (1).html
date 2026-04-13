@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Our Story 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #c97b84;
+    --rose-light: #f2d5d8;
+    --rose-deep: #8b3a48;
+    --cream: #fdf6f0;
+    --cream2: #fff9f4;
+    --gold: #c9a96e;
+    --brown: #5c3d2e;
+    --text: #3a2625;
+    --text-muted: #8a6f6f;
+    --card: rgba(255,255,255,0.82);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 40px 24px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 70% at 50% 0%, rgba(201,123,132,0.22) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 100%, rgba(201,169,110,0.12) 0%, transparent 60%);
+  }
+
+  .hero-petal {
+    position: absolute;
+    pointer-events: none;
+    animation: drift linear infinite;
+    opacity: 0;
+    z-index: 0;
+  }
+  @keyframes drift {
+    0%   { transform: translateY(-40px) translateX(0) rotate(0deg); opacity: 0.7; }
+    50%  { transform: translateY(50vh) translateX(30px) rotate(180deg); opacity: 0.5; }
+    100% { transform: translateY(110vh) translateX(-20px) rotate(360deg); opacity: 0; }
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-date {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 10vw, 86px);
+    line-height: 1.1;
+    color: var(--rose-deep);
+    margin-bottom: 20px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-tagline {
+    font-size: clamp(14px, 3vw, 17px);
+    color: var(--text-muted);
+    max-width: 460px;
+    line-height: 1.8;
+    font-weight: 300;
+    margin: 0 auto 40px;
+  }
+
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--rose);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    animation: bounce 2s ease-in-out infinite;
+    cursor: pointer;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  .scroll-hint span { font-size: 20px; }
+
+  .floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0; left: 0;
+    overflow: hidden;
+  }
+  .fh {
+    position: absolute;
+    font-size: 22px;
+    opacity: 0.12;
+    animation: floatHeart 8s ease-in-out infinite;
+  }
+  @keyframes floatHeart {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50% { transform: translateY(-30px) rotate(10deg); }
+  }
+
+  /* ── COUNTER ── */
+  .counter-section {
+    background: linear-gradient(135deg, var(--rose-deep) 0%, #6d2c39 100%);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .counter-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 30px);
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .counter-grid {
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 5vw, 64px);
+    flex-wrap: wrap;
+  }
+  .counter-item { text-align: center; }
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 8vw, 72px);
+    color: white;
+    line-height: 1;
+    display: block;
+  }
+  .counter-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose-light);
+    margin-top: 8px;
+    display: block;
+  }
+  .counter-divider {
+    font-size: 40px;
+    color: rgba(255,255,255,0.15);
+    align-self: center;
+    line-height: 1;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 80px);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--rose-deep);
+    line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--rose); }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 0; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rose-light) 10%, var(--rose-light) 90%, transparent);
+    transform: translateX(-50%);
+  }
+
+  .tl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 60px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .tl-item.visible { opacity: 1; transform: translateY(0); }
+
+  .tl-item:nth-child(odd) { flex-direction: row-reverse; }
+
+  .tl-content {
+    flex: 1;
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--rose-light);
+    border-radius: 20px;
+    padding: 28px 28px 24px;
+    box-shadow: 0 4px 30px rgba(139,58,72,0.06);
+    max-width: 440px;
+  }
+
+  .tl-item:nth-child(odd) .tl-content { margin-left: auto; }
+  .tl-item:nth-child(even) .tl-content { margin-right: auto; }
+
+  .tl-dot-wrap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tl-dot {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 0 0 6px var(--cream), 0 0 0 7px var(--rose-light);
+    flex-shrink: 0;
+  }
+
+  .tl-date {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+  .tl-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--rose-deep);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .tl-body {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* Mobile timeline */
+  @media (max-width: 640px) {
+    .timeline::before { left: 22px; }
+    .tl-item, .tl-item:nth-child(odd) { flex-direction: column; padding-left: 56px; }
+    .tl-dot-wrap { left: 22px; top: 4px; transform: none; }
+    .tl-content, .tl-item:nth-child(odd) .tl-content,
+    .tl-item:nth-child(even) .tl-content { margin: 0; max-width: 100%; }
+  }
+
+  /* ── GALLERY ── */
+  .gallery-bg { background: var(--cream2); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .gallery-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--rose-light);
+    box-shadow: 0 4px 20px rgba(139,58,72,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
+  }
+  .gallery-card.visible { opacity: 1; transform: scale(1); }
+  .gallery-card:hover { transform: scale(1.02) translateY(-4px); box-shadow: 0 12px 40px rgba(139,58,72,0.14); }
+
+  .gallery-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, var(--rose-light) 0%, #f8e0e3 50%, var(--rose-light) 100%);
+    position: relative;
+  }
+  .gallery-img-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--rose-light), #ffe0e4, var(--rose-light));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--rose);
+    font-size: 32px;
+  }
+  .gallery-img-placeholder small {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    font-family: 'Lato', sans-serif;
+  }
+
+  .gallery-caption {
+    padding: 16px 18px;
+  }
+  .gallery-caption h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--rose-deep);
+    margin-bottom: 4px;
+  }
+  .gallery-caption p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── LETTER ── */
+  .letter-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff9f5;
+    border: 1px solid var(--rose-light);
+    border-radius: 24px;
+    padding: clamp(32px, 6vw, 64px);
+    box-shadow: 0 8px 50px rgba(139,58,72,0.08);
+    position: relative;
+  }
+  .letter-wrap::before {
+    content: '❝';
+    position: absolute;
+    top: 24px; left: 28px;
+    font-size: 64px;
+    color: var(--rose-light);
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+  .letter-to {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .letter-body {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(15px, 2.5vw, 18px);
+    line-height: 2;
+    color: var(--text);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .letter-body p { margin-bottom: 20px; }
+  .letter-sign {
+    text-align: right;
+    margin-top: 32px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--rose-deep);
+    font-style: italic;
+  }
+
+  /* ── WISHES ── */
+  .wishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .wish-card {
+    background: var(--card);
+    border: 1px solid var(--rose-light);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: transform 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .wish-card.visible { opacity: 1; transform: translateY(0); }
+  .wish-card:hover { transform: translateY(-4px); }
+  .wish-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+  .wish-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--rose-deep);
+    padding: 48px 24px;
+    text-align: center;
+  }
+  footer .f-heart {
+    font-size: 36px;
+    animation: heartbeat 2s ease-in-out infinite;
+    display: block;
+    margin-bottom: 16px;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14%      { transform: scale(1.15); }
+    28%      { transform: scale(1); }
+    42%      { transform: scale(1.08); }
+  }
+  footer p {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    font-style: italic;
+    line-height: 1.8;
+  }
+  footer strong { color: white; }
+  .logout-btn {
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.6);
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    transition: all 0.25s;
+    font-family: 'Lato', sans-serif;
+  }
+  .logout-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(253,246,240,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--rose-light);
+    transition: transform 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--rose-deep);
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+
+  @media (max-width: 500px) {
+    .nav-links { display: none; }
+  }
+
+  /* Music button */
+  .music-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 50px; height: 50px;
+    background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 20px rgba(139,58,72,0.4);
+    z-index: 200;
+    transition: transform 0.2s;
+  }
+  .music-btn:hover { transform: scale(1.1); }
+  .music-btn.playing { animation: spin 3s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <span class="nav-logo">Our Story 💌</span>
+  <ul class="nav-links">
+    <li><a href="#timeline">Kenangan</a></li>
+    <li><a href="#gallery">Galeri</a></li>
+    <li><a href="#letter">Surat</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="floating-hearts">
+    <span class="fh" style="top:10%;left:5%;animation-delay:0s">💕</span>
+    <span class="fh" style="top:20%;right:8%;animation-delay:1.5s">🌹</span>
+    <span class="fh" style="top:70%;left:10%;animation-delay:3s">✨</span>
+    <span class="fh" style="top:60%;right:5%;animation-delay:2s">💌</span>
+    <span class="fh" style="top:85%;left:50%;animation-delay:4s">🌸</span>
+  </div>
+  <div class="hero-content">
+    <p class="hero-date" id="start-date-display">sejak hari pertama kita ✨</p>
+    <h1 class="hero-title">Kamu &amp; Aku<br><em>Selamanya</em></h1>
+    <p class="hero-tagline">
+      Di sini tersimpan setiap momen berharga, setiap tawa,<br>
+      dan setiap cinta yang kita rajut bersama.
+    </p>
+    <div class="scroll-hint" onclick="document.getElementById('counter').scrollIntoView({behavior:'smooth'})">
+      <span>↓</span>
+      <small style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--rose)">Jelajahi</small>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTER -->
+<section class="counter-section" id="counter">
+  <h2>Sudah berapa lama kita bersama?</h2>
+  <div class="counter-grid">
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-years">0</span>
+      <span class="counter-label">Tahun</span>
+    </div>
+    <div class="counter-divider">·</div>
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-months">0</span>
+      <span class="counter-label">Bulan</span>
+    </div>
+    <div class="counter-divider">·</div>
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-days">0</span>
+      <span class="counter-label">Hari</span>
+    </div>
+    <div class="counter-divider">·</div>
+    <div class="counter-item">
+      <span class="counter-num" id="cnt-hours">0</span>
+      <span class="counter-label">Jam</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section" id="timeline">
+  <div class="section-header">
+    <p class="section-tag">Perjalanan Kita</p>
+    <h2 class="section-title">Kenangan yang <em>Tak Terlupakan</em></h2>
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot-wrap">
+        <div class="tl-dot">💫</div>
+      </div>
+      <div class="tl-content">
+        <p class="tl-date">Awal Cerita</p>
+        <h3 class="tl-heading">Pertama Kali Kita Bertemu</h3>
+        <p class="tl-body">Siapa yang sangka pertemuan sederhana itu akan mengubah segalanya. Aku melihatmu dan rasanya seperti semesta sudah mengaturnya sejak lama.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot-wrap">
+        <div class="tl-dot">🌹</div>
+      </div>
+      <div class="tl-content">
+        <p class="tl-date">Momen Istimewa</p>
+        <h3 class="tl-heading">Hari Pertama Bersama</h3>
+        <p class="tl-body">Hari itu terasa seperti mimpi. Kita tertawa, bercerita, dan aku sadar bahwa di sampingmu adalah tempatku yang paling nyaman di dunia.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot-wrap">
+        <div class="tl-dot">🎂</div>
+      </div>
+      <div class="tl-content">
+        <p class="tl-date">Perayaan</p>
+        <h3 class="tl-heading">Ulang Tahun yang Berkesan</h3>
+        <p class="tl-body">Kejutan kecil yang kita buat dengan sepenuh hati. Momen ini selalu membuatku tersenyum setiap kali mengingatnya.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot-wrap">
+        <div class="tl-dot">🌅</div>
+      </div>
+      <div class="tl-content">
+        <p class="tl-date">Petualangan</p>
+        <h3 class="tl-heading">Liburan Pertama Kita</h3>
+        <p class="tl-body">Bersama kamu, bahkan perjalanan biasa pun jadi luar biasa. Setiap tempat terasa lebih indah ketika kamu ada di sampingku.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot-wrap">
+        <div class="tl-dot">💑</div>
+      </div>
+      <div class="tl-content">
+        <p class="tl-date">Hari Ini & Selamanya</p>
+        <h3 class="tl-heading">Masih Terus Bertumbuh</h3>
+        <p class="tl-body">Setiap hari bersama kamu adalah hadiah. Aku tidak sabar untuk menciptakan lebih banyak kenangan indah bersamamu.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery-bg">
+  <section class="section" id="gallery">
+    <div class="section-header">
+      <p class="section-tag">Galeri Kenangan</p>
+      <h2 class="section-title">Momen yang <em>Kita Abadikan</em></h2>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- ============================================================
+           CARA GANTI FOTO:
+           Di setiap kartu di bawah ini, ada tulisan src="foto/nama-foto.jpg"
+           Ganti "nama-foto.jpg" dengan nama file fotomu yang sesungguhnya.
+
+           STRUKTUR FOLDER yang harus kamu buat:
+           kenangan-kita/          ← folder utama
+           ├── index.html
+           ├── story.html
+           └── foto/               ← folder khusus foto, taruh semua foto di sini
+               ├── foto1.jpg
+               ├── foto2.jpg
+               ├── foto3.jpg
+               ├── foto4.jpg
+               ├── foto5.jpg
+               └── foto6.jpg
+
+           Jadi kalau nama fotomu "pantai.jpg", taruh di folder foto/
+           lalu di sini tulis: src="foto/pantai.jpg"
+           ============================================================ -->
+
+      <!-- FOTO 1 — ganti "foto1.jpg" dengan nama file fotomu -->
+      <div class="gallery-card">
+        <img src="foto/foto1.jpg" class="gallery-img" alt="Kenangan kita"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-img-placeholder" style="display:none">📸<small>foto/foto1.jpg</small></div>
+        <div class="gallery-caption">
+          <h4>Momen Pertama</h4>
+          <p>Foto pertama kita berdua yang selalu aku simpan</p>
+        </div>
+      </div>
+
+      <!-- FOTO 2 — ganti "foto2.jpg" dengan nama file fotomu -->
+      <div class="gallery-card">
+        <img src="foto/foto2.jpg" class="gallery-img" alt="Kenangan kita"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-img-placeholder" style="display:none">🌸<small>foto/foto2.jpg</small></div>
+        <div class="gallery-caption">
+          <h4>Hari yang Indah</h4>
+          <p>Ketika kita berdua menghabiskan waktu dengan bahagia</p>
+        </div>
+      </div>
+
+      <!-- FOTO 3 — ganti "foto3.jpg" dengan nama file fotomu -->
+      <div class="gallery-card">
+        <img src="foto/foto3.jpg" class="gallery-img" alt="Kenangan kita"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-img-placeholder" style="display:none">🌅<small>foto/foto3.jpg</small></div>
+        <div class="gallery-caption">
+          <h4>Petualangan Kita</h4>
+          <p>Setiap tempat jadi lebih bermakna bersamamu</p>
+        </div>
+      </div>
+
+      <!-- FOTO 4 — ganti "foto4.jpg" dengan nama file fotomu -->
+      <div class="gallery-card">
+        <img src="foto/foto4.jpg" class="gallery-img" alt="Kenangan kita"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-img-placeholder" style="display:none">💕<small>foto/foto4.jpg</small></div>
+        <div class="gallery-caption">
+          <h4>Selfie Favorit</h4>
+          <p>Foto ini selalu membuatku tersenyum bahagia</p>
+        </div>
+      </div>
+
+      <!-- FOTO 5 — ganti "foto5.jpg" dengan nama file fotomu -->
+      <div class="gallery-card">
+        <img src="foto/foto5.jpg" class="gallery-img" alt="Kenangan kita"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-img-placeholder" style="display:none">🎂<small>foto/foto5.jpg</small></div>
+        <div class="gallery-caption">
+          <h4>Perayaan Spesial</h4>
+          <p>Momen ulang tahun yang tak terlupakan</p>
+        </div>
+      </div>
+
+      <!-- FOTO 6 — ganti "foto6.jpg" dengan nama file fotomu -->
+      <div class="gallery-card">
+        <img src="foto/foto6.jpg" class="gallery-img" alt="Kenangan kita"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-img-placeholder" style="display:none">✨<small>foto/foto6.jpg</small></div>
+        <div class="gallery-caption">
+          <h4>Satu dari Seribu</h4>
+          <p>Momen biasa yang jadi luar biasa bersamamu</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- LETTER -->
+<section class="section" id="letter">
+  <div class="section-header">
+    <p class="section-tag">Dari Hatiku</p>
+    <h2 class="section-title">Surat <em>Untukmu</em></h2>
+  </div>
+
+  <div class="letter-wrap">
+    <p class="letter-to">Kepada kamu, cintaku —</p>
+    <div class="letter-body">
+      <p>
+        Ada kata-kata yang terlalu dalam untuk diucapkan, tapi terlalu besar untuk diam-diam disimpan sendiri. Jadi izinkan aku menulisnya di sini, di tempat yang hanya kita berdua tahu.
+      </p>
+      <p>
+        Kamu adalah alasan aku percaya pada keajaiban. Sebelum kamu, aku tidak tahu bahwa seseorang bisa membuat hari hujan terasa seperti pelangi, atau momen biasa terasa seperti petualangan.
+      </p>
+      <p>
+        Terima kasih sudah ada. Terima kasih sudah memilih aku, setiap hari, tanpa syarat. Kamu adalah rumahku — dan aku ingin pulang ke kamu selama-lamanya.
+      </p>
+    </div>
+    <p class="letter-sign">Dengan segenap cinta,<br><em>Aku 💌</em></p>
+  </div>
+</section>
+
+<!-- WISHES -->
+<div class="gallery-bg">
+  <section class="section">
+    <div class="section-header">
+      <p class="section-tag">Harapan Kita</p>
+      <h2 class="section-title">Yang Aku <em>Doakan</em> Untuk Kita</h2>
+    </div>
+    <div class="wishes-grid">
+      <div class="wish-card"><span class="wish-icon">🏡</span><p class="wish-text">Rumah kecil yang hangat, penuh tawa kita berdua</p></div>
+      <div class="wish-card"><span class="wish-icon">✈️</span><p class="wish-text">Menjelajahi dunia berdua, menciptakan kenangan di tiap sudut bumi</p></div>
+      <div class="wish-card"><span class="wish-icon">🌙</span><p class="wish-text">Malam-malam yang tenang, kamu di sampingku selamanya</p></div>
+      <div class="wish-card"><span class="wish-icon">💪</span><p class="wish-text">Tumbuh bersama, saling mendukung di setiap langkah</p></div>
+      <div class="wish-card"><span class="wish-icon">😂</span><p class="wish-text">Ribuan tawa lagi yang akan kita ciptakan</p></div>
+      <div class="wish-card"><span class="wish-icon">♾️</span><p class="wish-text">Cinta yang tak lekang oleh waktu, sampai akhir cerita kita</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-heart">❤️</span>
+  <p><strong>Our Story</strong><br>
+  Dibuat dengan cinta, untuk kamu yang selalu di hatiku.<br>
+  <em>"Bersamamu, setiap momen menjadi kenangan terindah."</em></p>
+  <br>
+  <button class="logout-btn" onclick="logout()">⟵ Keluar</button>
+</footer>
+
+<button class="music-btn" id="music-btn" title="Toggle musik" onclick="toggleMusic()">🎵</button>
+
+<script>
+// ── GANTI TANGGAL JADIAN DI SINI ──
+const START_DATE = new Date('2024-01-01T00:00:00'); // Ganti dengan tanggal aslimu!
+// ──────────────────────────────────
+
+// Counter
+function updateCounter() {
+  const now = new Date();
+  const diff = now - START_DATE;
+  const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const years = Math.floor(totalDays / 365);
+  const months = Math.floor((totalDays % 365) / 30);
+  const days = totalDays % 30;
+  const hours = now.getHours();
+
+  document.getElementById('cnt-years').textContent = years;
+  document.getElementById('cnt-months').textContent = months;
+  document.getElementById('cnt-days').textContent = days;
+  document.getElementById('cnt-hours').textContent = hours;
+
+  // Show start date in hero
+  const opts = { year:'numeric', month:'long', day:'numeric' };
+  document.getElementById('start-date-display').textContent =
+    'sejak ' + START_DATE.toLocaleDateString('id-ID', opts) + ' ✨';
+}
+updateCounter();
+setInterval(updateCounter, 60000);
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.tl-item, .gallery-card, .wish-card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// ============================================================
+// MUSIK — cara ganti lagu:
+//
+// STRUKTUR FOLDER yang harus kamu buat:
+// kenangan-kita/          ← folder utama
+// ├── index.html
+// ├── story.html
+// ├── foto/               ← folder foto
+// └── musik/              ← folder musik, taruh file MP3 di sini
+//     └── lagu-kita.mp3   ← nama file lagumu
+//
+// Di bawah ini, ganti "lagu-kita.mp3" dengan nama file lagumu.
+// Contoh: kalau lagunya "perfect.mp3" → tulis: musik/perfect.mp3
+// ============================================================
+let audio = null;
+function toggleMusic() {
+  const btn = document.getElementById('music-btn');
+  if (!audio) {
+    audio = new Audio('musik/lagu-kita.mp3'); // ← GANTI "lagu-kita.mp3" dengan nama file lagumu
+    audio.loop = true;
+    audio.volume = 0.35; // volume: 0.1 (pelan) sampai 1.0 (keras)
+    audio.play().catch(() => {
+      // Browser blokir autoplay — tidak masalah, user sudah klik tombolnya
+    });
+    btn.textContent = '🎶';
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+    audio = null;
+    btn.textContent = '🎵';
+  }
+}
+
+// Logout
+function logout() {
+  window.location.href = 'index.html';
+}
+
+// Floating petals
+const petals = ['🌸','🌹','🌷','💮','✿'];
+for (let i = 0; i < 12; i++) {
+  const el = document.createElement('div');
+  el.className = 'hero-petal';
+  el.textContent = petals[i % petals.length];
+  el.style.cssText = `
+    left: ${Math.random()*100}%;
+    top: -30px;
+    font-size: ${10+Math.random()*14}px;
+    animation-duration: ${8+Math.random()*10}s;
+    animation-delay: ${Math.random()*10}s;
+  `;
+  document.querySelector('.hero').appendChild(el);
+}
+
+// Nav hide on scroll down
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const nav = document.getElementById('navbar');
+  nav.style.transform = s > lastScroll && s > 80 ? 'translateY(-100%)' : 'translateY(0)';
+  lastScroll = s;
+});
+</script>
+</body>
+</html>
